@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>IOT 육아 도우미</title>
+    <link rel="stylesheet" href="iot.css">
+</head>
+<body>
+    <script defer src="./iot.js"></script>
+    <div class="container">
+        <div class="header">
+            <h1><a href="baby.html">babycare</a></h1>
+            <div class="nav">
+                <ul>
+                    <li><a href="state.html">아기상태</a></li>
+                    <li><a href="camera.html">카메라</a></li>
+                    <li><a href="iot.html">IOT 연결</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="iot" class="iot">
+            <div class="switchContainer" id="switchContainer"> 
+                <table class="product">
+                    <tr>
+                        <th>
+                            가습기
+                        </th>
+                        <td>
+                            <input type="checkbox" onclick="toggleRelay()" id="toggle" hidden>
+                            <label for="toggle"  class="toggleSwitch" id="label">
+                                <span class="toggleButton" id="togglebtn"></span>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            제습기
+                        </th>
+                        <td>
+                            <input type="checkbox" onclick="toggleRelay1()" id="toggle1" hidden>
+                            <label for="toggle1"  class="toggleSwitch" id="label1">
+                                <span class="toggleButton" id="togglebtn1"></span>
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="wrap">
+            <audio src="Emergency.mp3" loop controls id="myAudio" hidden></audio>
+            자동화 사용 <input id="use" class="use" type="checkbox"><br>
+            습도: <input id="humidMinValue" type="text" maxlength="4"> ~ <input id="humidMaxValue" type="text" maxlength="4"><br>
+        </div>
+    </div>
+</body>
+</html>

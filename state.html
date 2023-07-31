@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>state</title>
+    <link rel="stylesheet" href="state.css">
+    
+</head>
+<body>
+    <script defer src="./state.js"></script>
+    <div class="container">
+        <div class="header">
+            <h1><a href="baby.html">babycare</a></h1>
+            <div class="nav">
+                <ul>
+                    <li><a href="state.html">아기상태</a></li>
+                    <li><a href="camera.html">카메라</a></li>
+                    <li><a href="iot.html">IOT 연결</a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="state" class="state">
+            <audio src="Emergency.mp3" loop controls id="myAudio" hidden></audio>
+            <table class="table">
+                <tr>
+                    <td>
+                        온도
+                    </td>
+                    <td class="graph">
+                        <div class="progress-bar">           
+                            <div id="progress" class="progress"></div>      
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        습도
+                    </td>
+                    <td class="graph">
+                        <div class="progress-bar1">
+                            <div id="progress1" class="progress1"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        체온
+                    </td>
+                    <td class="graph">
+                        <div class="progress-bar2">
+                            <div id="progress2" class="progress2"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table> 
+        </div>
+    </div>
+</body>
+</html>
