@@ -8,20 +8,20 @@ const bar2 = document.querySelector('.progress2');
 fetch("/memberList")
   .then((response) => response.json())
   .then((data) => {
-    if(data[data.length-1].Cry==1)
+    if(data[data.length-1].Cry===1)
     {
       myAudio.play();
     }
-    if(data[data.length-1].Cry==0)
+    if(data[data.length-1].Cry===0)
     {
       myAudio.pause();
     }
       progress.innerHTML = `${data[data.length-1].ATempC}°C%`
       progress1.innerHTML = `${data[data.length-1].Humid}%`
-      progress2.innerHTML = `${data[data.length-1].TempC}°C`
+      progress2.innerHTML = `${data[data.length-1].TempC_MAX}°C`
       bar.style.width = (data[data.length-1].ATempC)+'%';
       bar1.style.width = (data[data.length-1].Humid)+'%';
-      bar2.style.width = (data[data.length-1].TempC)+'%';
+      bar2.style.width = (data[data.length-1].TempC_MAX)+'%';
       
   }).catch((error) => {
   console.error("Error fetching data:", error);
@@ -49,10 +49,10 @@ function autoRefresh_state_div(){
       }
       progress.innerHTML = `${data[data.length-1].ATempC}°C`
       progress1.innerHTML = `${data[data.length-1].Humid}%`
-      progress2.innerHTML = `${data[data.length-1].TempC}°C`
+      progress2.innerHTML = `${data[data.length-1].TempC_MAX}°C`
       bar.style.width = (data[data.length-1].ATempC)+'%';
       bar1.style.width = (data[data.length-1].Humid)+'%';
-      bar2.style.width = (data[data.length-1].TempC)+'%';
+      bar2.style.width = (data[data.length-1].TempC_MAX)+'%';
   });
 } 
 
