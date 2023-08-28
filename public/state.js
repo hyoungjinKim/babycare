@@ -1,59 +1,136 @@
 const databody = document.getElementById('dataBody');
-const state=document.getElementById('state');
-const bar = document.querySelector('.progress');
-const bar1 = document.querySelector('.progress1');
-const bar2 = document.querySelector('.progress2');
+const state = document.getElementById('state');
+var ctx = document.getElementById('myChart');
 
+let config = {
+  type: 'line',
+  data: {
+    labels: [ // Date Objects
+      '60분전',
+      '50분전',
+      '40분전',
+      '30분전',
+      '20분전',
+      '10분전',
+      '현재'
+    ],
+    datasets: [{
+      label: '습도',
+      backgroundColor: 'rgba(000, 153, 255, 1)',
+      borderColor: 'rgba(000, 153, 255, 1)',
+      fill: false,
+      data: [],
+    }, {
+      label: '온도',
+      backgroundColor: 'rgba(153, 255, 102, 1)',
+      borderColor: 'rgba(153, 255, 102, 1)',
+      fill: false,
+      data: [],
+    },{
+      label: '체온',
+      backgroundColor: 'rgba(255, 051, 051, 1)',
+      borderColor: 'rgba(255, 051, 051, 1)',
+      fill: false,
+      data: [],
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    title: {
+      text: 'Chart.js Time Scale'
+    },
+    scales: {
+      yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: '차트'
+        }
+      }]
+    },
+  }
+};
 
-fetch("/memberList")
-  .then((response) => response.json())
-  .then((data) => {
-    if(data[data.length-1].Cry===1)
-    {
-      myAudio.play();
-    }
-    if(data[data.length-1].Cry===0)
-    {
-      myAudio.pause();
-    }
-      progress.innerHTML = `${data[data.length-1].ATempC}°C%`
-      progress1.innerHTML = `${data[data.length-1].Humid}%`
-      progress2.innerHTML = `${data[data.length-1].TempC_MAX}°C`
-      bar.style.width = (data[data.length-1].ATempC)+'%';
-      bar1.style.width = (data[data.length-1].Humid)+'%';
-      bar2.style.width = (data[data.length-1].TempC_MAX)+'%';
-      
-  }).catch((error) => {
-  console.error("Error fetching data:", error);
-});
-
-function autoRefresh_state_div()//div 2초마다 새로고침
-{
-  var currentLocation = window.location;
-$("#state").fadeOut('slow').load(currentLocation + '#state').fadeIn("slow");
-}
-setInterval('autoRefresh_state_div()', 2000);
-
-
-function autoRefresh_state_div(){
-    fetch("http://203.232.193.208:8080/memberList", {
+let myChart = new Chart(ctx, config);
+fetch("http://203.232.193.208:8080/memberList", {
     method: "get",
   }).then((response) => response.json()).then((data) => {
-      if(data[data.length-1].Cry==1)
-      {
-        myAudio.play();
-      }
-      if(data[data.length-1].Cry==0)
-      {
-        myAudio.pause();
-      }
-      progress.innerHTML = `${data[data.length-1].ATempC}°C`
-      progress1.innerHTML = `${data[data.length-1].Humid}%`
-      progress2.innerHTML = `${data[data.length-1].TempC_MAX}°C`
-      bar.style.width = (data[data.length-1].ATempC)+'%';
-      bar1.style.width = (data[data.length-1].Humid)+'%';
-      bar2.style.width = (data[data.length-1].TempC_MAX)+'%';
+    if (data[data.length - 1].Cry == 1) {
+      myAudio.play();
+    }
+    if (data[data.length - 1].Cry == 0) {
+      myAudio.pause();
+    }
+
+    // 가져온 데이터를 차트에 적용
+    config.data.datasets[0].data.push(data[data.length - 7].Humid);
+    config.data.datasets[0].data.push(data[data.length - 6].Humid);
+    config.data.datasets[0].data.push(data[data.length - 5].Humid);
+    config.data.datasets[0].data.push(data[data.length - 4].Humid);
+    config.data.datasets[0].data.push(data[data.length - 3].Humid);
+    config.data.datasets[0].data.push(data[data.length - 2].Humid);
+    config.data.datasets[0].data.push(data[data.length - 1].Humid);
+
+    config.data.datasets[1].data.push(data[data.length - 7].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 6].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 5].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 4].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 3].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 2].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 1].ATempC);
+
+    config.data.datasets[2].data.push(data[data.length - 7].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 6].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 5].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 4].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 3].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 2].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 1].TempC_MAX);
+
+    // 차트 업데이트
+    myChart.update();
+});
+
+
+function con() {
+  fetch("http://203.232.193.208:8080/memberList", {
+    method: "get",
+  }).then((response) => response.json()).then((data) => {
+    if (data[data.length - 1].Cry == 1) {
+      myAudio.play();
+    }
+    if (data[data.length - 1].Cry == 0) {
+      myAudio.pause();
+    }
+
+    // 가져온 데이터를 차트에 적용
+    config.data.datasets[0].data.push(data[data.length - 7].Humid);
+    config.data.datasets[0].data.push(data[data.length - 6].Humid);
+    config.data.datasets[0].data.push(data[data.length - 5].Humid);
+    config.data.datasets[0].data.push(data[data.length - 4].Humid);
+    config.data.datasets[0].data.push(data[data.length - 3].Humid);
+    config.data.datasets[0].data.push(data[data.length - 2].Humid);
+    config.data.datasets[0].data.push(data[data.length - 1].Humid);
+
+    config.data.datasets[1].data.push(data[data.length - 7].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 6].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 5].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 4].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 3].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 2].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 1].ATempC);
+
+    config.data.datasets[2].data.push(data[data.length - 7].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 6].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 5].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 4].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 3].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 2].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 1].TempC_MAX);
+
+    // 차트 업데이트
+    myChart.update();
   });
 } 
 
-
+// 데이터 업데이트를 주기적으로 수행
+setInterval(con, 2000);

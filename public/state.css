@@ -46,85 +46,11 @@
 }
 
 .container .state {
-    position: absolute;
-    left: 20%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    color: white; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30vh;
 }
 
-.container .state .table .graph{
-    padding-bottom: 15px;
-}
-
-.container .state .progress-bar {
-    margin-left: 10px;
-    margin-top: 20px;
-    width: 400%;
-    height: 30px;
-    background-color: #dedede;
-    font-weight: 600;
-    font-size: .8rem;
-    border-radius: 40px;
-}
-.container .state .progress-bar1 {
-    margin-left: 10px;
-    margin-top: 20px;
-    width: 400%;
-    height: 30px;
-    background-color: #dedede;
-    font-weight: 600;
-    font-size: .8rem;
-    border-radius: 40px;
-}
-.container .state .progress-bar2 {
-    margin-left: 10px;
-    margin-top: 20px;
-    width: 400%;
-    height: 30px;
-    background-color: #dedede;
-    font-weight: 600;
-    font-size: .8rem;
-    border-radius: 40px;
-}
-
-.container .state .progress {
-    border-radius: 40px;
-    display: block;
-    padding: 2px 10px;
-    width: 400%;  
-    height: 30px;
-    line-height: 23px;
-    text-align: right;
-    background-color: #80E12A;
-    color: #111;
-    box-sizing: border-box;
-}
-
-.container .state .progress1 {
-    border-radius: 40px;
-    display: block;
-    padding: 2px 10px;
-    width: 400%;  
-    height: 30px;
-    line-height: 23px;
-    text-align: right;
-    background-color: #00AFFF;
-    color: #111;
-    box-sizing: border-box;
-}
-
-.container .state .progress2 {
-    border-radius: 40px;
-    display: block;
-    padding: 2px 10px;
-    width: 400%;  
-    height: 30px;
-    line-height: 23px;
-    text-align: right;
-    background-color: #FF607F;
-    color: #111;
-    box-sizing: border-box;
-}
 
 
