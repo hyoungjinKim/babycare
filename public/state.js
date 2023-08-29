@@ -6,12 +6,10 @@ let config = {
   type: 'line',
   data: {
     labels: [ // Date Objects
-      '60분전',
-      '50분전',
-      '40분전',
-      '30분전',
       '20분전',
+      '15분전',
       '10분전',
+      '5분전',
       '현재'
     ],
     datasets: [{
@@ -62,28 +60,22 @@ fetch("http://203.232.193.208:8080/memberList", {
     }
 
     // 가져온 데이터를 차트에 적용
-    config.data.datasets[0].data.push(data[data.length - 7].Humid);
-    config.data.datasets[0].data.push(data[data.length - 6].Humid);
-    config.data.datasets[0].data.push(data[data.length - 5].Humid);
-    config.data.datasets[0].data.push(data[data.length - 4].Humid);
-    config.data.datasets[0].data.push(data[data.length - 3].Humid);
-    config.data.datasets[0].data.push(data[data.length - 2].Humid);
+    config.data.datasets[0].data.push(data[data.length - 601].Humid);
+    config.data.datasets[0].data.push(data[data.length - 451].Humid);
+    config.data.datasets[0].data.push(data[data.length - 301].Humid);
+    config.data.datasets[0].data.push(data[data.length - 151].Humid);
     config.data.datasets[0].data.push(data[data.length - 1].Humid);
 
-    config.data.datasets[1].data.push(data[data.length - 7].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 6].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 5].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 4].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 3].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 2].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 601].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 451].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 301].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 151].ATempC);
     config.data.datasets[1].data.push(data[data.length - 1].ATempC);
 
-    config.data.datasets[2].data.push(data[data.length - 7].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 6].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 5].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 4].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 3].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 2].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 601].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 451].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 301].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 151].TempC_MAX);
     config.data.datasets[2].data.push(data[data.length - 1].TempC_MAX);
 
     // 차트 업데이트
@@ -103,28 +95,22 @@ function con() {
     }
 
     // 가져온 데이터를 차트에 적용
-    config.data.datasets[0].data.push(data[data.length - 7].Humid);
-    config.data.datasets[0].data.push(data[data.length - 6].Humid);
-    config.data.datasets[0].data.push(data[data.length - 5].Humid);
-    config.data.datasets[0].data.push(data[data.length - 4].Humid);
-    config.data.datasets[0].data.push(data[data.length - 3].Humid);
-    config.data.datasets[0].data.push(data[data.length - 2].Humid);
+    config.data.datasets[0].data.push(data[data.length - 601].Humid);
+    config.data.datasets[0].data.push(data[data.length - 451].Humid);
+    config.data.datasets[0].data.push(data[data.length - 301].Humid);
+    config.data.datasets[0].data.push(data[data.length - 151].Humid);
     config.data.datasets[0].data.push(data[data.length - 1].Humid);
 
-    config.data.datasets[1].data.push(data[data.length - 7].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 6].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 5].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 4].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 3].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 2].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 601].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 451].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 301].ATempC);
+    config.data.datasets[1].data.push(data[data.length - 151].ATempC);
     config.data.datasets[1].data.push(data[data.length - 1].ATempC);
 
-    config.data.datasets[2].data.push(data[data.length - 7].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 6].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 5].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 4].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 3].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 2].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 601].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 451].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 301].TempC_MAX);
+    config.data.datasets[2].data.push(data[data.length - 151].TempC_MAX);
     config.data.datasets[2].data.push(data[data.length - 1].TempC_MAX);
 
     // 차트 업데이트
