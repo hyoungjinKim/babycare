@@ -49,7 +49,7 @@ let config = {
 };
 
 let myChart = new Chart(ctx, config);
-fetch("http://203.232.193.208:8080/memberList", {
+fetch("/memberList", {
     method: "get",
   }).then((response) => response.json()).then((data) => {
     if (data[data.length - 1].Cry == 1) {
