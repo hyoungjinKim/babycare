@@ -52,13 +52,7 @@ let myChart = new Chart(ctx, config);
 fetch("/memberList", {
     method: "get",
   }).then((response) => response.json()).then((data) => {
-    if (data[data.length - 1].Cry == 1) {
-      myAudio.play();
-    }
-    if (data[data.length - 1].Cry == 0) {
-      myAudio.pause();
-    }
-
+    
     // 가져온 데이터를 차트에 적용
     config.data.datasets[0].data.push(data[data.length - 601].Humid);
     config.data.datasets[0].data.push(data[data.length - 451].Humid);
@@ -87,13 +81,7 @@ function con() {
   fetch("http://203.232.193.208:8080/memberList", {
     method: "get",
   }).then((response) => response.json()).then((data) => {
-    if (data[data.length - 1].Cry == 1) {
-      myAudio.play();
-    }
-    if (data[data.length - 1].Cry == 0) {
-      myAudio.pause();
-    }
-
+   
     // 가져온 데이터를 차트에 적용
     config.data.datasets[0].data.push(data[data.length - 601].Humid);
     config.data.datasets[0].data.push(data[data.length - 451].Humid);

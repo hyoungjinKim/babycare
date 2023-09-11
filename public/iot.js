@@ -82,15 +82,7 @@ async function toggleRelay1() {
 function connection(){
   fetch("/memberList")
     .then((response) => response.json()).then((data) => {
-      if(data[data.length-1].Cry===1)
-      {
-        myAudio.play();
-      }
-      if(data[data.length-1].Cry===0)
-      {
-        myAudio.pause();
-      }
-
+      
       const HumidMin = parseInt(document.getElementById("humidMinValue").value);
       const HumidMax = parseInt(document.getElementById("humidMaxValue").value);
       
