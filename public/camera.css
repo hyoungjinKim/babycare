@@ -30,7 +30,7 @@
 }
 
 .container .nav ul li{
-    font-size: 12px;
+    font-size: 2.5vw;
     display: inline-block;
     margin: 0 10px;
 }
@@ -58,8 +58,3 @@
     height: 20em;
 }
 
-.video1{
-
-    width: 20em;
-    height: 20em;
-}
