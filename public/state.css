@@ -23,7 +23,6 @@
     
     text-decoration: none;
     color: white;
-    font-family: abster;
 }
 
 .container .header h1 a:hover{
@@ -49,8 +48,53 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30vh;
+    margin-top: 20vh;
 }
 
+.info_wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10%;
+}
 
+.info{
+    color: white;
+    font-size: 30px;
+    font-weight: lighter;
+    margin-top: 3%;
+}
 
+.qq{
+    color: rgba(000, 153, 255, 1);
+}
+
+.ww{
+    color: rgba(255, 051, 051, 1);
+}
+
+.ee{
+    color: rgba(153, 255, 102, 1);
+}
+
+.hidden{
+    display: none;
+}
+
+.alrm{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height: 200px;
+    background-color: black;
+    border: 1px solid red;
+}
+
+.alrm div{
+    color: red;
+    margin-top: 90px;
+    margin-left: 60px;
+}

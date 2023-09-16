@@ -126,3 +126,24 @@
 .toggleSwitch, .toggleButton {
     transition: all 0.2s ease-in;
 }
+
+.hidden{
+    display: none;
+}
+
+.alrm{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    height: 200px;
+    background-color: black;
+    border: 1px solid red;
+}
+
+.alrm div{
+    color: red;
+    margin-top: 90px;
+    margin-left: 60px;
+}

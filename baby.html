@@ -5,10 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IOT 육아 도우미</title>
     <link rel="stylesheet" href="baby.css">
+    <link rel="shortcut icon" href="#">
 </head>
 <body>
     <script defer src="./home.js"></script>
+    <script defer src="./start.js"></script>
     <div class="container">
+        <div id="start" class="start" onclick="none()">
+            <div>앱 시작하기</div>
+        </div>
         <div class="header">
             <h1><a href="baby.html">babycare</a></h1>
             <div class="nav">
@@ -20,8 +25,11 @@
             </div>
         </div>
         <div class="hero"><!--주요 기능 들어갈 곳-->
-            <audio src="Emergency.mp3" loop controls id="myAudio" hidden></audio>
             <h2>IOT 육아 웹</h2>
+            <audio src="Emergency.mp3" loop controls id="myAudio" hidden></audio>
+        </div>
+        <div id="alrm" class="alrm hidden">
+            <div>아이 상태를 확인하세요</div>
         </div>
     </div>
 </body>

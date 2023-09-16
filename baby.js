@@ -3,20 +3,22 @@ const app= express();
 const axios = require('axios');
 const mysql = require('mysql2');
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
     host: '192.168.0.6',
     user: 'root',
     password: '1234',
     database: 'CAP2',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
-  
-connection.connect(function(err){  
-    if(!err) {  
-        console.log("Database is connected ... \n\n");    
-    } 
-    else {  
-        console.log("Error connecting database ... \n\n");    
-    }  
+
+pool.on('connection', (connection) => {
+    console.log('Database connected');
+});
+
+pool.on('error', (err) => {
+    console.error('Database error:', err);
 });
   
 app.get('/',function(request,response){
@@ -39,18 +41,25 @@ app.get('/iot.html', function(request, response){
     response.sendFile(__dirname+ '/iot.html');
 });
 
-app.get('/memberList', (request, response)=>{
-
-    connection.query('SELECT * from han', function(err, rows, fields) {   
-        if (!err){
-            response.send(rows);
-        }  
-        else  {
-            console.log('Error while performing Query.');
+app.get('/memberList', (request, response) => {
+    pool.getConnection((err, connection) => {
+        if (err) {
+            console.log('Error connecting to database:', err);
             response.status(500).send('서버 에러');
+            return;
         }
-    });  
-})
+
+        connection.query('SELECT * from han', function (err, rows, fields) {
+            connection.release(); // 연결 반환
+            if (!err) {
+                response.send(rows);
+            } else {
+                console.log('Error while performing Query.');
+                response.status(500).send('서버 에러');
+            }
+        });
+    });
+});
 
 //가습기
 app.get('/relay/:status', async (request, response) => {

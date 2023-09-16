@@ -1,6 +1,10 @@
 const databody = document.getElementById('dataBody');
 const state = document.getElementById('state');
-var ctx = document.getElementById('myChart');
+const ctx = document.getElementById('myChart');
+
+const humid=document.getElementById('humid');
+const Temp_Max=document.getElementById('Temp_MAX');
+const Temp_Amb=document.getElementById('TEMP_Amb');
 
 let config = {
   type: 'line',
@@ -53,6 +57,10 @@ fetch("/memberList", {
     method: "get",
   }).then((response) => response.json()).then((data) => {
     
+    humid.innerHTML=`${data[data.length-1].Humid} %`
+    Temp_Max.innerHTML=`${data[data.length-1].TempC_MAX}°C`
+    Temp_Amb.innerHTML=`${data[data.length-1].ATempC}°C`
+    
     // 가져온 데이터를 차트에 적용
     config.data.datasets[0].data.push(data[data.length - 601].Humid);
     config.data.datasets[0].data.push(data[data.length - 451].Humid);
@@ -71,6 +79,8 @@ fetch("/memberList", {
     config.data.datasets[2].data.push(data[data.length - 301].TempC_MAX);
     config.data.datasets[2].data.push(data[data.length - 151].TempC_MAX);
     config.data.datasets[2].data.push(data[data.length - 1].TempC_MAX);
+
+    
 
     // 차트 업데이트
     myChart.update();
@@ -82,6 +92,10 @@ function con() {
     method: "get",
   }).then((response) => response.json()).then((data) => {
    
+    humid.innerHTML=`${data[data.length-1].Humid} %`
+    Temp_Max.innerHTML=`${data[data.length-1].TempC_MAX}°C`
+    Temp_Amb.innerHTML=`${data[data.length-1].ATempC}°C`
+
     // 가져온 데이터를 차트에 적용
     config.data.datasets[0].data.push(data[data.length - 601].Humid);
     config.data.datasets[0].data.push(data[data.length - 451].Humid);
@@ -101,6 +115,7 @@ function con() {
     config.data.datasets[2].data.push(data[data.length - 151].TempC_MAX);
     config.data.datasets[2].data.push(data[data.length - 1].TempC_MAX);
 
+    
     // 차트 업데이트
     myChart.update();
   });
