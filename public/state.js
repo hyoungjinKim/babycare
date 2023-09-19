@@ -52,74 +52,46 @@ let config = {
   }
 };
 
-let myChart = new Chart(ctx, config);
-fetch("/memberList", {
-    method: "get",
-  }).then((response) => response.json()).then((data) => {
-    
-    humid.innerHTML=`${data[data.length-1].Humid} %`
-    Temp_Max.innerHTML=`${data[data.length-1].TempC_MAX}°C`
-    Temp_Amb.innerHTML=`${data[data.length-1].ATempC}°C`
-    
-    // 가져온 데이터를 차트에 적용
-    config.data.datasets[0].data.push(data[data.length - 601].Humid);
-    config.data.datasets[0].data.push(data[data.length - 451].Humid);
-    config.data.datasets[0].data.push(data[data.length - 301].Humid);
-    config.data.datasets[0].data.push(data[data.length - 151].Humid);
-    config.data.datasets[0].data.push(data[data.length - 1].Humid);
-
-    config.data.datasets[1].data.push(data[data.length - 601].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 451].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 301].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 151].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 1].ATempC);
-
-    config.data.datasets[2].data.push(data[data.length - 601].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 451].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 301].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 151].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 1].TempC_MAX);
-
-    
-
-    // 차트 업데이트
-    myChart.update();
-});
-
 
 function con() {
-  fetch("http://203.232.193.208:8080/memberList", {
+  fetch("/memberList", {
     method: "get",
-  }).then((response) => response.json()).then((data) => {
-   
-    humid.innerHTML=`${data[data.length-1].Humid} %`
-    Temp_Max.innerHTML=`${data[data.length-1].TempC_MAX}°C`
-    Temp_Amb.innerHTML=`${data[data.length-1].ATempC}°C`
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      humid.innerHTML = `${data[data.length - 1].Humid} %`;
+      Temp_Max.innerHTML = `${data[data.length - 1].TempC_MAX}°C`;
+      Temp_Amb.innerHTML = `${data[data.length - 1].ATempC}°C`;
 
-    // 가져온 데이터를 차트에 적용
-    config.data.datasets[0].data.push(data[data.length - 601].Humid);
-    config.data.datasets[0].data.push(data[data.length - 451].Humid);
-    config.data.datasets[0].data.push(data[data.length - 301].Humid);
-    config.data.datasets[0].data.push(data[data.length - 151].Humid);
-    config.data.datasets[0].data.push(data[data.length - 1].Humid);
+      // 가져온 데이터를 차트에 적용
+      config.data.datasets[0].data[0]=data[data.length-601].Humid;
+      config.data.datasets[0].data[1]=data[data.length - 451].Humid;
+      config.data.datasets[0].data[2]=data[data.length - 301].Humid;
+      config.data.datasets[0].data[3]=data[data.length - 151].Humid;
+      config.data.datasets[0].data[4]=data[data.length - 1].Humid;
 
-    config.data.datasets[1].data.push(data[data.length - 601].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 451].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 301].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 151].ATempC);
-    config.data.datasets[1].data.push(data[data.length - 1].ATempC);
+      config.data.datasets[1].data[0]=data[data.length-601].ATempC;
+      config.data.datasets[1].data[1]=data[data.length - 451].ATempC;
+      config.data.datasets[1].data[2]=data[data.length - 301].ATempC;
+      config.data.datasets[1].data[3]=data[data.length - 151].ATempC;
+      config.data.datasets[1].data[4]=data[data.length - 1].ATempC;
 
-    config.data.datasets[2].data.push(data[data.length - 601].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 451].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 301].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 151].TempC_MAX);
-    config.data.datasets[2].data.push(data[data.length - 1].TempC_MAX);
+      config.data.datasets[2].data[0]=data[data.length-601].TempC_MAX;
+      config.data.datasets[2].data[1]=data[data.length - 451].TempC_MAX;
+      config.data.datasets[2].data[2]=data[data.length - 301].TempC_MAX;
+      config.data.datasets[2].data[3]=data[data.length - 151].TempC_MAX;
+      config.data.datasets[2].data[4]=data[data.length - 1].TempC_MAX;
 
-    
-    // 차트 업데이트
-    myChart.update();
-  });
-} 
+      // 차트 업데이트
+      myChart.update();
+    });
+}
 
-// 데이터 업데이트를 주기적으로 수행
+// 초기 데이터 가져오기와 주기적인 데이터 업데이트 시작
+con();
+
+const myChart = new Chart(ctx, config);
+
+// 주기적인 데이터 업데이트를 주기적으로 수행
 setInterval(con, 2000);
+

@@ -4,7 +4,7 @@ const axios = require('axios');
 const mysql = require('mysql2');
 
 const pool = mysql.createPool({
-    host: '192.168.0.6',
+    host: '192.168.43.206',
     user: 'root',
     password: '1234',
     database: 'CAP2',
@@ -64,7 +64,7 @@ app.get('/memberList', (request, response) => {
 //가습기
 app.get('/relay/:status', async (request, response) => {
     const status = request.params.status;
-    const relayUrl = 'http://192.168.0.26/relay';
+    const relayUrl = 'http://192.168.43.5:80/relay';
     
     try {
       await axios.get(`${relayUrl}?status=${status}`);
@@ -78,10 +78,10 @@ app.get('/relay/:status', async (request, response) => {
 //제습기
 app.get('/relay1/:status', async (request, response) => {
     const status = request.params.status;
-    const relayUrl = 'http://192.168.0.27/relay1';
+    const relayUrl1 = 'http://192.168.43.189:83/relay1';
     
     try {
-      await axios.get(`${relayUrl}?status=${status}`);
+      await axios.get(`${relayUrl1}?status=${status}`);
       response.send(`Relay1 상태가 ${status === 'on' ? '켜졌습니다' : '꺼졌습니다'}`);
       console.log(status)
     } catch (error) {
